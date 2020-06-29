@@ -75,9 +75,13 @@ class Tick extends EventEmitter {
 
 
                 }
-            }       
-                            
+            }   
+            
+            this.emit('eof');
+                                        
         }
+
+
         
     }
 

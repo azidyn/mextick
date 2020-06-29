@@ -20,6 +20,7 @@ class Aggregate extends EventEmitter {
         this.tick = new Tick( options.files );
 
         this.tick.on('tick', this.newtick.bind(this) );
+        this.tick.on('eof', this.lasttick.bind(this) );
 
         this.label = options.resolution;
         this.resolution = RESOLUTION[ this.label ];
@@ -41,6 +42,13 @@ class Aggregate extends EventEmitter {
 
     start( symbol ) {
         this.tick.start( symbol );
+    }
+
+    lasttick( tick ) {
+
+        this.agg.timestamp = new Date( this.lastopen );
+        this.emit( 'bar', this.agg );        
+        
     }
 
     newtick( tick ) {
