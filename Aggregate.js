@@ -78,9 +78,7 @@ class Aggregate extends EventEmitter {
                 this.emit( 'bar', this.agg );
 
             this.clearedunstarted = true;
-        
-            // console.log(`${(new Date(lastopen)).toISOString()} open=${open} high=${high} low=${low} close=${trade.price} | latency ${latency}ms`);
-            
+                    
             // Note that, on TradingView at least, the `open` price is always equal to the previous `close` price
             // I wasn't sure if the open price was the actual price of the first trade in the new bar? That seemed like it might be correct but no.
             // No idea if this is a matter of convention or a 'standard' but if you check on tv this is how they do it hey-ho.
