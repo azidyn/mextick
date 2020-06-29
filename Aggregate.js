@@ -68,6 +68,12 @@ class Aggregate extends EventEmitter {
             // Emit the previous bar, now it has closed
             this.agg.timestamp = new Date( this.lastopen );
 
+            // Skip the first bar as we cannot guarantee we have the first trade in this bar to calculate an accurate OHL(c)
+            // This is *slightly* problematic.
+            // You can make an assumption that the first tick of the file you process from BitMEX historical
+            // data is indeed the very first (i.e. there is no previous data we've missed). This isn't really 
+            // the case in a live situation when consuming a stream. But for this offline use case you can 
+            // probably remove this 'unstarted' logic from code and restore the missing bar.
             if ( this.clearedunstarted )
                 this.emit( 'bar', this.agg );
 
