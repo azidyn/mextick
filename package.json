@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/azidyn/mextick#readme",
   "dependencies": {
-    "line-reader": "^0.4.0",
     "n-readlines": "^1.0.0"
   }
 }
