@@ -21,6 +21,6 @@ agg.on('tick', t => {
 })
 
 // Send us ETHUSD data
-agg.start('BCHH20');
+agg.start('ETHUSD');
 
 
