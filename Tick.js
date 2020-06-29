@@ -28,7 +28,7 @@ class Tick extends EventEmitter {
 
         this.nozeroes = true;
 
-        
+
 
     }
 
@@ -78,9 +78,6 @@ class Tick extends EventEmitter {
         
     }
 
-    stop() {
-
-    }
 }
 
 module.exports = Tick;
