@@ -1,6 +1,8 @@
 
 const EventEmitter = require('./EventEmitter');
 const fs = require('fs');
+const path = require('path');
+
 const nlines = require('n-readlines');
 
 // BitMEX trade csv columns
@@ -33,8 +35,9 @@ class Tick extends EventEmitter {
     }
 
     _next( ) {
+        //// ? new nlines( `${this.path}/${this.files[ ++this.index ]}` ) 
         return this.index < this.files.length-1 
-                ? new nlines( `${this.path}/${this.files[ ++this.index ]}` ) 
+                ? new nlines( path.join(this.path, this.files[ ++this.index ]))                
                 : false;
     }
 
