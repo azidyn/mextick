@@ -10,6 +10,7 @@ This could be the basis needed to build a very accurate backtesting system able 
 First thing you need is some trade data which can be downloaded for free as `.csv.gz` (zipped csv files) found on BitMEX's public cloud archive here:
 
 https://public.bitmex.com/?prefix=data/trade/
+**IMPORTANT NOTE THIS WEBSITE ONLY SEEMS TO WORK ON THE Chrome WEB BROWSER**
 
 Download the files and unzip the CSVs into the `trade` folder.
 
