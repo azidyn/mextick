@@ -44,11 +44,11 @@ class Aggregate extends EventEmitter {
         this.tick.start( symbol );
     }
 
-    lasttick( tick ) {
+    lasttick( ) {
 
         this.agg.timestamp = new Date( this.lastopen );
         this.emit( 'bar', this.agg );        
-        
+
     }
 
     newtick( tick ) {
