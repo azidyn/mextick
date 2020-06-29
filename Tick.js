@@ -76,13 +76,11 @@ class Tick extends EventEmitter {
 
                 }
             }   
-            
-            this.emit('eof');
-                                        
+                                                    
         }
 
+        this.emit('eof');
 
-        
     }
 
 }
