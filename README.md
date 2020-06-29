@@ -15,6 +15,12 @@ https://public.bitmex.com/?prefix=data/trade/
 Download the files and unzip the CSVs into the `trade` folder.
 
 
+Install the dependency 
+
+```
+npm install
+```
+
 Import the module:
 ```js
     const Aggregate = require('./Aggregate');
