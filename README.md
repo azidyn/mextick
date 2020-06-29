@@ -30,13 +30,12 @@ Instantiate the object, passing:
 
 1. the folder containing the csv files you downloaded
 2. the bar resolution you want e.g. 1h, 4h, 15m etc (see Aggregate.js for more info)
-3. whether you want ticks sent or not
 
 ```js
-let agg = new Aggregate({ files: './trade', resolution: '1h', sendticks: true });
+let agg = new Aggregate({ files: './trade', resolution: '1h' });
 ```
 
-Then subscribe to the events that Aggregate class will fire:
+Then subscribe to the events, both optional, that the Aggregate class will fire:
 
 
 ```js

@@ -15,8 +15,8 @@ class Aggregate extends EventEmitter {
     constructor( options ) {
         super();
  
-
-        this.sendticks = options.sendticks;
+        
+        // this.sendticks = options.sendticks; // Redundant, just don't subscribe to `tick` even if not needed doh
         this.tick = new Tick( options.files );
 
         this.tick.on('tick', this.newtick.bind(this) );
@@ -97,7 +97,6 @@ class Aggregate extends EventEmitter {
             this.agg.close = tick.price;
     
         }        
-
 
         this.emit( 'tick', tick );
 

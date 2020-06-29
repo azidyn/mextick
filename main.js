@@ -4,7 +4,7 @@ const WH = "\x1b[37m";
 
 const Aggregate = require('./Aggregate');
 
-let agg = new Aggregate({ files: './trade', resolution: '1h', sendticks: true });
+let agg = new Aggregate({ files: './trade', resolution: '1h' });
 
 // A new bar was closed
 agg.on('bar', b => {
