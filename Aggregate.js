@@ -12,14 +12,16 @@ const RESOLUTION = {
 
 class Aggregate extends EventEmitter {
 
-    constructor( directory, resolution ) {
+    constructor( options ) {
         super();
  
-        this.tick = new Tick( directory );
+
+        this.sendticks = options.sendticks;
+        this.tick = new Tick( options.files );
 
         this.tick.on('tick', this.newtick.bind(this) );
 
-        this.label = resolution;
+        this.label = options.resolution;
         this.resolution = RESOLUTION[ this.label ];
 
         this.lastopen = -1;
@@ -42,8 +44,6 @@ class Aggregate extends EventEmitter {
     }
 
     newtick( tick ) {
-
-        this.emit( 'tick', tick );
 
         // Get millisecond timestamp of this tick
         let timestamp = tick.timestamp.getTime();
@@ -90,6 +90,8 @@ class Aggregate extends EventEmitter {
     
         }        
 
+
+        this.emit( 'tick', tick );
 
     }
 
