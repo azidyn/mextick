@@ -23,6 +23,6 @@ agg.on('tick', t => {
 })
 
 // Send us ETHUSD data
-agg.start('XBTUSD');
+agg.start('ETHUSD');
 
 

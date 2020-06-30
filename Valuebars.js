@@ -61,12 +61,26 @@ class Valuebars extends EventEmitter {
             this.clearedunstarted = true;
                     
             // For the timestamp, which is now variable, just use the tick timestamp of the first trade in this new value bar
-            this.agg.timestamp = tick.timestamp;
-            this.agg.open = this.agg.close;
-            this.agg.high = tick.price;
-            this.agg.low = tick.price;
-            this.agg.close = tick.price;
-            this.agg.value = nextstart;         // Initialize next value bar with overflow from previous bar
+            // this.agg.timestamp = tick.timestamp;
+            // this.agg.open = this.agg.close;
+            // this.agg.high = tick.price;
+            // this.agg.low = tick.price;
+            // this.agg.close = tick.price;
+            // this.agg.value = nextstart;         // Initialize next value bar with overflow from previous bar
+
+            let lc = this.agg.close;
+
+            // Create a new object otherwise client side might have memory reference issues when building an array
+            this.agg = {
+                resolution: this.resolution,
+                timestamp: tick.timestamp,
+                open: lc,
+                high: tick.price,
+                low: tick.price,
+                close: tick.price,
+                value: nextstart
+            };
+    
     
         } else { 
     

@@ -73,6 +73,7 @@ class Aggregate extends EventEmitter {
         // If the open time of the current tick inside a bar of interval `this.resolution` is not equal to previous
         // open time, then this tick starts a new bar
         if ( openms != this.lastopen ) {
+            
 
             // Emit the previous bar, now it has closed
             this.agg.timestamp = new Date( this.lastopen );
@@ -91,12 +92,27 @@ class Aggregate extends EventEmitter {
             // Note that, on TradingView at least, the `open` price is always equal to the previous `close` price
             // I wasn't sure if the open price was the actual price of the first trade in the new bar? That seemed like it might be correct but no.
             // No idea if this is a matter of convention or a 'standard' but if you check on tv this is how they do it hey-ho.
-            this.agg.open = this.agg.close;
 
-            this.agg.high = tick.price;
-            this.agg.low = tick.price;
-            this.agg.close = tick.price;
-            this.agg.volume = tick.size;
+            // this.agg.open = this.agg.close;
+            let lc = this.agg.close;
+
+            // this.agg.high = tick.price;
+            // this.agg.low = tick.price;
+            // this.agg.close = tick.price;
+            // this.agg.volume = tick.size;
+
+            this.agg = {
+                resolution: this.label,
+                timestamp: null,
+                open: lc,
+                high: tick.price,
+                low: tick.price,
+                close: tick.price,
+                volume: tick.size
+            };
+    
+
+                        
 
             this.lastopen = openms;
     
