@@ -12,23 +12,23 @@ const TICK_DIR=5, TRADE_ID=6, GROSS_VAL=7, HOME_NOT=8, FOREIGN_NOT=9;
 
 class Tick extends EventEmitter {
 
-    constructor( directory ) {
+    constructor( options ) {
         super();
 
         this.index = -1;
         this.symbol = '';
-        this.path = directory;
+        this.path = options.files;
 
         this.reader = null;        
 
-        this.files = fs.readdirSync( directory );
+        this.files = fs.readdirSync( options.files );
 
         // Get CSV files only, exclude zipped copies and sort the files assuming correctly dated filenames as provided by BitMEX
         this.files = ( this.files.filter( f => f.includes('.csv') && !f.includes('.csv.gz') ) ).sort();
 
         this.lastemit = null;
 
-        this.nozeroes = true;
+        this.nozeroes = options.nozeroes;
 
 
 
@@ -62,7 +62,8 @@ class Tick extends EventEmitter {
                         symbol: cells[ SYMBOL ],
                         price: Number( cells[ PRICE ] ),
                         side: cells[ SIDE ],
-                        tick: cells[ TICK_DIR ]
+                        tick: cells[ TICK_DIR ],
+                        size: Number( cells[ SIZE ] )
                     }
 
                     if ( em.tick.includes('Zero') && this.nozeroes ) {
@@ -72,7 +73,6 @@ class Tick extends EventEmitter {
                         this.emit( 'tick', em );
 
                     }
-
 
                 }
             }   

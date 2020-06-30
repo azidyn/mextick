@@ -17,7 +17,7 @@ class Aggregate extends EventEmitter {
  
         
         // this.sendticks = options.sendticks; // Redundant, just don't subscribe to `tick` even if not needed doh
-        this.tick = new Tick( options.files );
+        this.tick = new Tick({ files: options.files, nozeroes: false });
 
         this.tick.on('tick', this.newtick.bind(this) );
         this.tick.on('eof', this.lasttick.bind(this) );
@@ -33,7 +33,8 @@ class Aggregate extends EventEmitter {
             open: 0,
             high: 0,
             low: 0,
-            close: 0
+            close: 0,
+            volume: 0
         };
 
         this.clearedunstarted = false;
@@ -95,6 +96,7 @@ class Aggregate extends EventEmitter {
             this.agg.high = tick.price;
             this.agg.low = tick.price;
             this.agg.close = tick.price;
+            this.agg.volume = tick.size;
 
             this.lastopen = openms;
     
@@ -103,6 +105,7 @@ class Aggregate extends EventEmitter {
             this.agg.high = Math.max( this.agg.high, tick.price );
             this.agg.low = Math.min( this.agg.low, tick.price );
             this.agg.close = tick.price;
+            this.agg.volume += tick.size;
     
         }        
 

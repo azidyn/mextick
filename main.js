@@ -9,14 +9,16 @@ let agg = new Aggregate({ files: './trade', resolution: '1h' });
 // A new bar was closed
 agg.on('bar', b => {
 
-    console.log(`${CY}[${b.timestamp.toISOString()}] BAR  | open=${b.open} high=${b.high} low=${b.low} close=${b.close}`);
+    console.log(`${CY}[${b.timestamp.toISOString()}] BAR  | open=${b.open} high=${b.high} low=${b.low} close=${b.close} vol=${b.volume}`);
 
 })
 
 // Price ticked up or down
 agg.on('tick', t => {
 
-    console.log(`${WH}[${t.timestamp.toISOString()}] TICK | price=${t.price} side=${t.side} tick=${t.tick}`);
+    // Skip ZeroMinusTick and ZeroPlusTick trades
+    if ( !t.tick.includes('Zero') )
+        console.log(`${WH}[${t.timestamp.toISOString()}] TICK | price=${t.price} side=${t.side} tick=${t.tick}`);
     
 })
 
