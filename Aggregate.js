@@ -93,13 +93,7 @@ class Aggregate extends EventEmitter {
             // I wasn't sure if the open price was the actual price of the first trade in the new bar? That seemed like it might be correct but no.
             // No idea if this is a matter of convention or a 'standard' but if you check on tv this is how they do it hey-ho.
 
-            // this.agg.open = this.agg.close;
             let lc = this.agg.close;
-
-            // this.agg.high = tick.price;
-            // this.agg.low = tick.price;
-            // this.agg.close = tick.price;
-            // this.agg.volume = tick.size;
 
             this.agg = {
                 resolution: this.label,

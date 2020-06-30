@@ -57,24 +57,16 @@ class Volbars extends EventEmitter {
 
             this.clearedunstarted = true;
                     
-            // For the timestamp, which is now variable, just use the tick timestamp of the first trade in this new volume bar
-            // this.agg.timestamp = tick.timestamp;
-            // this.agg.open = this.agg.close;
-            // this.agg.high = tick.price;
-            // this.agg.low = tick.price;
-            // this.agg.close = tick.price;
-            // this.agg.volume = nextstart; // Initialize next volume bar with overflow from previous bar
-
             let lc = this.agg.close;
 
             this.agg = {
                 resolution: this.resolution,
-                timestamp: tick.timestamp,
+                timestamp: tick.timestamp,      // For the timestamp, which is now variable, just use the tick timestamp of the first trade in this new volume bar
                 open: lc,
                 high: tick.price,
                 low: tick.price,
                 close: tick.price,
-                volume: nextstart
+                volume: nextstart               // Initialize next volume bar with overflow from previous bar
             };
     
     
