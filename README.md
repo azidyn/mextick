@@ -4,6 +4,7 @@ Simple example of how to parse historical trade data and emit ticks and aggregat
 
 This could be the basis needed to build a very accurate backtesting system able to process intrabar price tick events.
 
+**Update**: added volume to the output bars.
 
 ### How to use 
 
@@ -54,6 +55,4 @@ Note that **all** of the BitMEX symbols are supported!:
 ### Notes:
 
 The system processes every single file in the `trade` folder in order. 
-
-Suggested improvement exercise: aggregate the trade `size` property to include `volume` with the bar data :)
 
