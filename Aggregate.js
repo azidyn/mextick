@@ -5,6 +5,7 @@ const Tick = require('./Tick');
 // Add your own resolutions here
 const RESOLUTION = {
     '15m':  15 * 1000 * 60,
+    '5m':  5 * 1000 * 60,
     '1h': 1 * 1000 * 60 * 60,
     '4h': 4 * 1000 * 60 * 60,
     '1d': 24 * 1000 * 60 * 60,
@@ -14,7 +15,6 @@ class Aggregate extends EventEmitter {
 
     constructor( options ) {
         super();
- 
         
         // this.sendticks = options.sendticks; // Redundant, just don't subscribe to `tick` even if not needed doh
         this.tick = new Tick({ files: options.files, nozeroes: false });

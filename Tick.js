@@ -58,7 +58,7 @@ class Tick extends EventEmitter {
                     let cells = text.split(',');
 
                     let em = {
-                        timestamp: new Date( Date.parse( cells[ TIMESTAMP ].replace('D', 'T') )), // 'D'/'T' Don't ask me why, I have no idea 
+                        timestamp: new Date( Date.parse( cells[ TIMESTAMP ].replace('D', 'T') + 'Z' )), // 'D'/'T' Don't ask me why, I have no idea 
                         symbol: cells[ SYMBOL ],
                         price: Number( cells[ PRICE ] ),
                         side: cells[ SIDE ],
