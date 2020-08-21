@@ -49,6 +49,7 @@ class Aggregate extends EventEmitter {
 
         this.agg.timestamp = new Date( this.lastopen );
         this.emit( 'bar', this.agg );        
+        this.emit( 'eof' );
 
     }
 
