@@ -4,6 +4,7 @@ const Tick = require('./Tick');
 
 // Add your own resolutions here
 const RESOLUTION = {
+    '1m':  1 * 1000 * 60,
     '15m':  15 * 1000 * 60,
     '5m':  5 * 1000 * 60,
     '1h': 1 * 1000 * 60 * 60,
@@ -47,6 +48,7 @@ class Aggregate extends EventEmitter {
 
     lasttick( ) {
 
+        
         this.agg.timestamp = new Date( this.lastopen );
         this.emit( 'bar', this.agg );        
         this.emit( 'eof' );
@@ -75,7 +77,6 @@ class Aggregate extends EventEmitter {
         // open time, then this tick starts a new bar
         if ( openms != this.lastopen ) {
             
-
             // Emit the previous bar, now it has closed
             this.agg.timestamp = new Date( this.lastopen );
 
@@ -100,8 +101,8 @@ class Aggregate extends EventEmitter {
                 resolution: this.label,
                 timestamp: null,
                 open: lc,
-                high: tick.price,
-                low: tick.price,
+                high: Math.max( tick.price, lc ), // Bug fix 26th jan
+                low: Math.min( tick.price, lc ),
                 close: tick.price,
                 volume: tick.size
             };
